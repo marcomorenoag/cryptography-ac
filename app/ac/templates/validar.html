@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AUTORIDAD CERTIFICADORA</title>
+  <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="container-fluid" style="margin-top: 100px;">
+    <div class="row text-center justify-content-center align-items-center">
+      <div class="col-md-6">
+        {% if valid %}
+        <div class="alert alert-success">
+          La firma es valida
+        </div>
+        <div> 
+          Título del documento firmado: <p>{{payload.file_name}}</p> 
+          Nombre(s) de quien firma: <p>{{payload.fist_name}}</p> 
+          Apellido(s) de quien firma: <p>{{payload.last_name}}</p> 
+          Nombre de usuario: <p>{{payload.username}}</p> 
+          Servidor que emitió firma: <p>{{payload.server_location}}</p>
+          <!-- Fecha de emisión: <p>{{payload.iat | date:"SHORT_DATE_FORMAT" }}</p> -->
+        </div>
+        {% else %}
+          <div class="alert alert-danger">
+            La firma es invalida
+          </div>
+          <div>
+            <h5>El contenido de la firma ha sido modificado</h5>
+          </div>
+        {%endif%}
+          
+      </div>
+    </div>
+  </div>
+
+  <style>
+    p{
+      font-weight: 700;
+    }
+  </style>
+</body>
+
+</html>
